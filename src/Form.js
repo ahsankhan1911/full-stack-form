@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
 import axios from 'axios';
 
@@ -9,22 +9,24 @@ import axios from 'axios';
 class Form extends Component {
 
     onSubmit = (e) => {
-        const {Comment} = this.props;
-        Comment.firstname = this.refs.firstname.value
+        let { User } = this.props;
+        User.firstname = this.refs.firstname.value
+        User.lastname = this.refs.lastname.value
+        User.email = this.refs.email.value
+        User.phone = this.refs.phone.value
+        User.password = this.refs.password.value
 
-        console.log(Comment.firstname)
-       
 
 
         e.preventDefault();
-        axios.post('http://localhost:5000/users/create-user', {
+        axios.post('http://localhost:3030/user/create-user', {
 
 
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            email: this.state.email,
-            phone: this.state.phone,
-            password: this.state.password,
+            firstname: User.firstname,
+            lastname: User.lastname,
+            email: User.email,
+            phone: User.phone,
+            password: User.password,
         })
 
             .then(function (response) {
@@ -51,14 +53,7 @@ class Form extends Component {
                     return alert(Err.phone.message)
                 }
 
-
-
-                // if (phoneErr) {
-                //     alert(response.data.errors.phone.message)
-                // }
-
-
-
+              
 
                 alert('Thanks for signing up ' + response.data.firstname)
 
@@ -79,7 +74,7 @@ class Form extends Component {
                 <h1> &nbsp;&nbsp;Full Stack Form</h1><br />
                 <form className="form-group col-md-5">
                     <input className="form-control" name="firstname" placeholder="First Name" ref="firstname" /><br />
-                    <input className="form-control" name="lastname" placeholder="Last Name"ref="lastname" /><br />
+                    <input className="form-control" name="lastname" placeholder="Last Name" ref="lastname" /><br />
                     <input className="form-control" name="email" placeholder="Email" ref="email" /><br />
                     <input className="form-control" name="phone" placeholder="Phone" ref="phone" /><br />
                     <input className="form-control" name="password" type="password" placeholder="password" ref="password" /><br />

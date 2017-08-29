@@ -17,11 +17,11 @@ import { observable, computed, action } from 'mobx';
 // }
 
 class Users {   
-    @observable firstname   
-    @observable lastname 
-    @observable email
-    @observable phone
-    @observable password
+    @observable firstname = '';
+    @observable lastname = '';
+    @observable email = '';
+    @observable phone = '';
+    @observable password = '';
 
 
 };
