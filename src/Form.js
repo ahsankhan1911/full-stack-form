@@ -24,39 +24,51 @@ class Form extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-axios.post('http://localhost:5000/users/create-user', {
+        axios.post('http://localhost:5000/users/create-user', {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             email: this.state.email,
             phone: this.state.phone,
             password: this.state.password,
         })
+
             .then(function (response) {
-              
-                 let emailErr = response.data.errors.email
-                 let phoneErr = response.data.errors.phone
 
-                if (emailErr) {
+                let Err = response.data.errors
 
-                    alert(response.data.errors.email.message)
+                if (Err.firstname) {
+                    alert(Err.firstname.message)
+                }
+
+                if (Err.lastname) {
+                    alert(Err.lastname.message)
+                }
+
+                if (Err.password) {
+                    alert(Err.password.message)
+                }
+
+                if (Err.email) {
+                    alert(Err.email.message)
+                }
+
+                if (Err.phone) {
+                    return alert(Err.phone.message)
                 }
 
 
-                if (phoneErr) {
-                    alert(response.data.errors.phone.message)
-                }
-                
 
-                    alert('Thanks for signing up ' + response.data.firstname)
+                // if (phoneErr) {
+                //     alert(response.data.errors.phone.message)
+                // }
 
-                    this.setState({
-                        firstname: '',
-                        lastname: '',
-                        email: '',
-                        phone: '',
-                        password: ''
-                    })
-                
+
+
+
+                alert('Thanks for signing up ' + response.data.firstname)
+
+
+
 
             })
             .catch(function (error) {
