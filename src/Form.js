@@ -25,16 +25,23 @@ class Form extends Component {
         let { User } = this.props;
         e.preventDefault();
     
-       User.showUser();
-
-       console.log(User.userData);
+        axios.get('http://localhost:5000/users/show-user')
+        .then(function (response) {
+           saad = response.data.map((data) => {
+                return (
+                  <div>
+                    <p>{console.log(data)}</p>
+                  </div>
+                )
+        }) })
+        .catch(function (error) {
+            console.log(error);
+        });
   
-         
-      
     }
 
     render() {
-        let {User} = this.props;
+        let {userData} = this.props;
         return (
             <div className="container-fluid">
                 <h1> &nbsp;&nbsp;Full Stack Form</h1><br />
@@ -48,12 +55,12 @@ class Form extends Component {
                     <button className="btn btn-primary" onClick={e => this.onSubmitShow(e)}>show all users</button>
                 </form>
                 <h1> Users Data</h1>
-            
-                    
-                        <div>{saad}</div>
-                  
-                
-                
+                <div className='well'>
+               {
+                 saad
+               }
+            </div>
+
             </div>
         )
     }

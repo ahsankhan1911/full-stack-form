@@ -1,8 +1,5 @@
-import { observable, computed, action } from 'mobx';
+import { observable, action } from 'mobx';
 import axios from 'axios';
-
-
-let user;
 
 class Users {
     @observable firstname = '';
@@ -10,7 +7,10 @@ class Users {
     @observable email = '';
     @observable phone = '';
     @observable password = '';
-    @observable userData = [];    
+   
+
+     
+
 
     @action createUser() {
 
@@ -64,14 +64,10 @@ class Users {
 
 
     @action showUser() {
-        let user = this.userData;
+       let user = this
      axios.get('http://localhost:5000/users/show-user')
         .then(function (response) {
-            
-            response.data.map(data => {
-                     user.push(data);
-            } )
-    
+           user.userData = response.data
         })
         .catch(function (error) {
             console.log(error);
@@ -80,6 +76,8 @@ class Users {
 
 
 };
+
+// const userData = observable([]);
 
 const store = new Users();
 export default store;
