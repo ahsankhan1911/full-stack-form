@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import axios from 'axios';
 
-let saad 
+
 @inject('User')
 @observer
-class Form extends Component {
+class Signup extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -20,44 +19,28 @@ class Form extends Component {
         User.createUser();
     }
 
-
-    onSubmitShow = (e) =>  {
-        let { User } = this.props;
-        e.preventDefault();
-    
-       User.showUser();
-
-       console.log(User.userData);
-  
-         
-      
-    }
-
     render() {
         let {User} = this.props;
         return (
             <div className="container-fluid">
                 <h1> &nbsp;&nbsp;Full Stack Form</h1><br />
-                <form className="form-group col-md-5">
-                    <input className="form-control" name="firstname" placeholder="First Name" ref="firstname" /><br />
+                <form className="form-group">
+                    <input required="required" className="form-control" name="firstname" placeholder="First Name" ref="firstname" /><br />
                     <input className="form-control" name="lastname" placeholder="Last Name" ref="lastname" /><br />
                     <input className="form-control" name="email" placeholder="Email" ref="email" /><br />
                     <input className="form-control" name="phone" placeholder="Phone" ref="phone" /><br />
                     <input className="form-control" name="password" type="password" placeholder="password" ref="password" /><br />
                     <button className="btn btn-primary" onClick={e => this.onSubmit(e)}>submit</button>&nbsp;&nbsp;
-                    <button className="btn btn-primary" onClick={e => this.onSubmitShow(e)}>show all users</button>
+                
                 </form>
-                <h1> Users Data</h1>
-            
-                    
-                        <div>{saad}</div>
-                  
-                
-                
+               
+               
+
+
             </div>
         )
     }
 }
 
 
-export default Form;
+export default Signup;

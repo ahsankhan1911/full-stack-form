@@ -1,8 +1,5 @@
-import { observable, computed, action } from 'mobx';
+import { observable, action } from 'mobx';
 import axios from 'axios';
-
-
-let user;
 
 class Users {
     @observable firstname = '';
@@ -10,7 +7,7 @@ class Users {
     @observable email = '';
     @observable phone = '';
     @observable password = '';
-    @observable userData = [];    
+    @observable userData = [];
 
     @action createUser() {
 
@@ -24,7 +21,8 @@ class Users {
             password: this.password,
         })
 
-            .then(function (response) {
+            .then( (response) => {
+              this.userData.push ( response.data)
 
                 let Err = response.data.errors
                 if (Err) {
@@ -66,16 +64,16 @@ class Users {
     @action showUser() {
         let user = this.userData;
      axios.get('http://localhost:5000/users/show-user')
-        .then(function (response) {
-            
-            response.data.map(data => {
-                     user.push(data);
-            } )
-    
+        .then( (response) => {
+       
+           response.data.map(d => {
+               user.push(d);
+           })
         })
         .catch(function (error) {
             console.log(error);
         });
+
     }
 
 
