@@ -19,8 +19,31 @@ class Signup extends Component {
         User.createUser();
     }
 
+<<<<<<< HEAD:src/Signup.js
+=======
+
+    onSubmitShow = (e) =>  {
+        let { User } = this.props;
+        e.preventDefault();
+    
+        axios.get('http://localhost:5000/users/show-user')
+        .then(function (response) {
+           saad = response.data.map((data) => {
+                return (
+                  <div>
+                    <p>{console.log(data)}</p>
+                  </div>
+                )
+        }) })
+        .catch(function (error) {
+            console.log(error);
+        });
+  
+    }
+
+>>>>>>> dd5cd8a9d3996b1a74d8f26b3fd9c370abd5d4d8:src/Form.js
     render() {
-        let {User} = this.props;
+        let {userData} = this.props;
         return (
             <div className="container-fluid">
                 <h1> &nbsp;&nbsp;Full Stack Form</h1><br />
@@ -31,11 +54,22 @@ class Signup extends Component {
                     <input className="form-control" name="phone" placeholder="Phone" ref="phone" /><br />
                     <input className="form-control" name="password" type="password" placeholder="password" ref="password" /><br />
                     <button className="btn btn-primary" onClick={e => this.onSubmit(e)}>submit</button>&nbsp;&nbsp;
+<<<<<<< HEAD:src/Signup.js
                 
                 </form>
                
                
 
+=======
+                    <button className="btn btn-primary" onClick={e => this.onSubmitShow(e)}>show all users</button>
+                </form>
+                <h1> Users Data</h1>
+                <div className='well'>
+               {
+                 saad
+               }
+            </div>
+>>>>>>> dd5cd8a9d3996b1a74d8f26b3fd9c370abd5d4d8:src/Form.js
 
             </div>
         )

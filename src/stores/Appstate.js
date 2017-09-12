@@ -7,7 +7,14 @@ class Users {
     @observable email = '';
     @observable phone = '';
     @observable password = '';
+<<<<<<< HEAD
     @observable userData = [];
+=======
+   
+
+     
+
+>>>>>>> dd5cd8a9d3996b1a74d8f26b3fd9c370abd5d4d8
 
     @action createUser() {
 
@@ -62,13 +69,18 @@ class Users {
 
 
     @action showUser() {
-        let user = this.userData;
+       let user = this
      axios.get('http://localhost:5000/users/show-user')
+<<<<<<< HEAD
         .then( (response) => {
        
            response.data.map(d => {
                user.push(d);
            })
+=======
+        .then(function (response) {
+           user.userData = response.data
+>>>>>>> dd5cd8a9d3996b1a74d8f26b3fd9c370abd5d4d8
         })
         .catch(function (error) {
             console.log(error);
@@ -78,6 +90,8 @@ class Users {
 
 
 };
+
+// const userData = observable([]);
 
 const store = new Users();
 export default store;
